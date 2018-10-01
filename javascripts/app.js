@@ -7,6 +7,7 @@
 // Because this is a polyfill (which will run before your source code), we need it to be a dependency, not a devDependency
 import "@babel/polyfill";
 
+
 // Import node modules.
 import DocReady from 'es6-docready'
 import $ from 'jquery'
@@ -14,6 +15,8 @@ import 'jquery-ui-bundle'
 import Foundation from 'foundation-sites'
 import Vue from 'vue/dist/vue.js'
 import Swiper from 'swiper'
+
+
 import autosize from 'autosize'
 import AOS from 'aos'
 import axios from 'axios'

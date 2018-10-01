@@ -11,7 +11,7 @@
 
 var gulp = require('gulp')
 var sourcemaps = require('gulp-sourcemaps')
-var livereload = require('gulp-livereload')
+// var livereload = require('gulp-livereload')
 var watch = require('gulp-watch')
 var batch = require('gulp-batch')
 
@@ -41,7 +41,7 @@ gulp.task('webserver', function() {
   connect.server({
     livereload: true,
     port: 8000,
-    host: '0.0.0.0'
+    host: 'localhost'
   });
 });
 
@@ -74,7 +74,7 @@ gulp.task('compile-js', function () {
   .pipe(uglify())
   .pipe(sourcemaps.write('./maps'))
   .pipe(gulp.dest('dist'))
-  .pipe(livereload())
+  .pipe(connect.reload())
 })
 
 // Task to compile less.
@@ -98,7 +98,7 @@ gulp.task('minify-css', function () {
   .pipe(concat('bundle.min.css'))
   .pipe(sourcemaps.write('./maps'))
   .pipe(gulp.dest('dist'))
-  .pipe(livereload())
+  .pipe(connect.reload())
 })
 
 // Task to minify html.
@@ -144,6 +144,15 @@ gulp.task('copy-fonts', function() {
   .pipe(gulp.dest('dist/fonts/'))
 })
 
+// Task to copy fonts to dist.
+gulp.task('html', function() {
+  return gulp.src([
+    './*.html'
+  ])
+  .pipe(gulp.dest('dist/fonts/'))
+  .pipe(connect.reload())
+})
+
 // Task to copy images to dist.
 gulp.task('copy-images', function() {
   return gulp.src([
@@ -156,10 +165,14 @@ gulp.task('copy-images', function() {
 
 // Task to watch.
 gulp.task('watch', function () {
+  watch(['*.html'], batch(function(events, done){
+    gulp.start('html',done)
+  }));
 
   // Watch all js files recursively.
   watch([
       'javascripts/**',
+      'javascripts/*.js',
       'javascripts/**/*.js'
     ], batch(function (events, done) {
       gulp.start('compile-js', done)

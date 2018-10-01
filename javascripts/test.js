@@ -13,7 +13,7 @@ class LikeButton extends React.Component {
     console.log("inside constructor");
     debugger;    
     if (this.state.liked) {
-      return 'You liked this.';
+      return 'You liked this';
     }
 
     return e(
