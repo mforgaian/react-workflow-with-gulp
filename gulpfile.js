@@ -58,21 +58,22 @@ gulp.task('browser-sync', function() {
 gulp.task('compile-js', function () {
   // app.js is your main JS file with all your module inclusions
   return browserify({
-    extensions: ['.js'],
+    extensions: ['.jsx','js'],
     entries:  ['./javascripts/app.js'],
     debug: true
   })
   .transform('babelify', {
 
     // https://babeljs.io/docs/en/env/
-    presets: ['@babel/preset-env']
+    presets: ['@babel/preset-env', '@babel/preset-react']
   })
   .bundle()
+  .on('error', function(err) { console.error(err); this.emit('end'); })
   .pipe(source('bundle.min.js'))
-  .pipe(buffer())
-  .pipe(sourcemaps.init())
-  .pipe(uglify())
-  .pipe(sourcemaps.write('./maps'))
+  // .pipe(buffer())
+  // .pipe(sourcemaps.init())
+  // .pipe(uglify())
+  // .pipe(sourcemaps.write('./maps'))
   .pipe(gulp.dest('dist'))
   .pipe(connect.reload())
 })
@@ -172,8 +173,8 @@ gulp.task('watch', function () {
   // Watch all js files recursively.
   watch([
       'javascripts/**',
-      'javascripts/*.js',
-      'javascripts/**/*.js'
+      'javascripts/*.{js, jsx}',
+      'javascripts/**/*.{js, jsx}'
     ], batch(function (events, done) {
       gulp.start('compile-js', done)
   }))

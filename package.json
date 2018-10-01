@@ -31,6 +31,8 @@
     "@babel/core": "^7.1.2",
     "@babel/plugin-transform-arrow-functions": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
     "babelify": "^10.0.0",
     "browser-sync": "^2.24.7",
     "browserify": "^16.2.3",

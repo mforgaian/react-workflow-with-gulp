@@ -6,7 +6,7 @@
 // npm install --save @babel/polyfill
 // Because this is a polyfill (which will run before your source code), we need it to be a dependency, not a devDependency
 import "@babel/polyfill";
-
+import HelloWorld from './hello-world';
 
 // Import node modules.
 import DocReady from 'es6-docready'
@@ -37,6 +37,11 @@ DocReady(async () => {
   const domContainer = document.querySelector('#like_button_container');
   ReactDOM.render(e(LikeButton), domContainer);
   
+  //
+  ReactDOM.render(
+    <HelloWorld phrase="ES6"/>,
+    document.querySelector('.root')
+  );
   // Async sample.
   async function example3() {
     return 'example 3'
