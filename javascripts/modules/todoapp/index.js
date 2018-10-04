@@ -15,6 +15,7 @@ export default class TodoApp extends Component{
             })
         })
     }
+    
     // method to handle submit
     handleSubmit = item =>{
         this.setState({
