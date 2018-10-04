@@ -7,8 +7,6 @@
 // Because this is a polyfill (which will run before your source code), we need it to be a dependency, not a devDependency
 import "@babel/polyfill";
 import HelloWorld from './hello-world';
-import CardComponent from './card.component.js';
-import Clock from './clock';
 
 // Import node modules.
 import DocReady from 'es6-docready'
@@ -26,7 +24,7 @@ import axios from 'axios'
 // Import local modules.
 import { getZFcurrentMediaQuery } from './utils'
 import Sample from './modules/sample/index'
-import LikeButton from './test';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -36,28 +34,11 @@ import ReactDOM from 'react-dom';
 DocReady(async () => {
   console.log("DOM is ready. Let's party")
   
-  // like button example
-  const e = React.createElement;
-  const domContainer = document.querySelector('#like_button_container');
-  ReactDOM.render(e(LikeButton), domContainer);
-  
   //hello world example
   ReactDOM.render(
-    <HelloWorld phrase="ES6"/>,
+    <HelloWorld />,
     document.querySelector('.root')
   );
-
-  function tick()  {
-    ReactDOM.render(
-      <Clock />,
-      document.querySelector('.clock')
-    );
-  }
-
-  setInterval(tick, 1000);
-
-  //card component example 
-  ReactDOM.render(<CardComponent name="Mahesh" location="Hyderabad"/>, document.querySelector('.card'));
 
   // Async sample.
   async function example3() {
