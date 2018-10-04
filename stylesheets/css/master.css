@@ -766,5 +766,13 @@ p:last-child {
 .ui-button .ui-icon {
   background-image: url("images/ui-icons_777777_256x240.png");
 }
+.person23 {
+  border: 1px solid #f00;
+  box-shadow: 0 2px 2px #ccc;
+  width: 250px;
+  padding: 20px;
+  margin: 10px;
+  display: inline-block;
+}
 
 /*# sourceMappingURL=maps/master.css.map */
