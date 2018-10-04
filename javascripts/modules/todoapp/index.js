@@ -4,33 +4,33 @@ import Form from '../../components/Form';
 
 export default class TodoApp extends Component{
     state = {
-        characters:[]
+        items:[]
     }
 
-    removeCharacter = index =>{
-        const {characters} = this.state;
+    removeTodoItem = index =>{
+        const {items} = this.state;
         this.setState({
-            characters: characters.filter((character, i)=>{
+            items: items.filter((item, i)=>{
                 return i !== index;
             })
         })
     }
 
-    handleSubmit = character =>{
+    handleSubmit = item =>{
         this.setState({
-            characters: [...this.state.characters, character]
+            items: [...this.state.items, item]
         })
     }
     
     render(){
-        const {characters} = this.state;
+        const {items} = this.state;
         return(
             <div className="container">
                 <h1>Welcome to todo app</h1>
                 <p> Your todo list is</p>
                 <Table
-                    characterData={characters}
-                    removeCharacter={this.removeCharacter}
+                    todoItems={items}
+                    removeTodoItem={this.removeTodoItem}
                 />
                 <h3>Add a todo item with description.</h3>
                 <Form handleSubmit={this.handleSubmit} />
