@@ -6,7 +6,7 @@ export default class TodoApp extends Component{
     state = {
         items:[]
     }
-
+    // method to remove item
     removeTodoItem = index =>{
         const {items} = this.state;
         this.setState({
