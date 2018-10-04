@@ -65,7 +65,8 @@ gulp.task('compile-js', function () {
   .transform('babelify', {
 
     // https://babeljs.io/docs/en/env/
-    presets: ['@babel/preset-env', '@babel/preset-react']
+    presets: ['@babel/preset-env', '@babel/preset-react'],
+    plugins: ['@babel/plugin-proposal-class-properties']
   })
   .bundle()
   .on('error', function(err) { console.error(err); this.emit('end'); })
